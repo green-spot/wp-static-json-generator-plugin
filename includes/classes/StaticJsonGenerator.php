@@ -17,6 +17,7 @@ class StaticJsonGenerator {
     $this->structures = [
       "post_list" => [],
       "post_detail" => [],
+      "page_detail" => [],
       "term_list" => [],
       "term_detail" => []
     ];
@@ -54,6 +55,13 @@ class StaticJsonGenerator {
     $this->addStructure("post_detail", $structure);
   }
 
+  public function addPageDetailStructure($slugs, $file_name, $normalizer){
+    if(is_string($slugs)) $slugs = [$slugs];
+    $structure = new PageDetailStructure($slugs, $file_name, $normalizer);
+
+    $this->addStructure("page_detail", $structure);
+  }
+
   public function addTermListStructure($taxonomy, $file_name, $normalizer){
     $structure = new TermListStructure($taxonomy, $file_name, $normalizer);
 
@@ -73,6 +81,10 @@ class StaticJsonGenerator {
 
   public function getPostDetailStructures(){
     return $this->structures["post_detail"];
+  }
+
+  public function getPageDetailStructures(){
+    return $this->structures["page_detail"];
   }
 
   public function getTermListStructures(){

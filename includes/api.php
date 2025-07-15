@@ -6,12 +6,9 @@ function addAPI($route, $method, $callback){
   register_rest_route('static-json-generator/v1', $route, [
     'methods' => $method,
     'callback' => $callback,
-    'permission_callback' => '__return_true'
-    /*
     'permission_callback' => function() {
       return current_user_can('manage_options');
     },
-    */
   ]);
 }
 
@@ -28,6 +25,15 @@ add_action('rest_api_init', function() {
 
       foreach($posts as $post){
         $structure->saveJson($post);
+      }
+    }
+
+    foreach($generator->getPostDetailStructures() as $structure){
+      foreach($structure->slugs as $slug){
+        $page = get_page_by_path($slug);
+        if($page){
+          $structure->saveJson($page);
+        }
       }
     }
 

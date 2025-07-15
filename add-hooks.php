@@ -31,6 +31,14 @@ add_action('wp_after_insert_post', function ($post_id) use($generator) {
       $structure->saveJson($post);
     }
   }
+
+  if($post->post_type === "page"){
+    foreach($generator->getPageDetailStructures() as $structure){
+      if(in_array($post->post_name, $structure->slugs)){
+        $structure->saveJson($post);
+      }
+    }
+  }
 });
 
 add_action('before_delete_post', function ($post_id) use($generator) {
@@ -46,6 +54,14 @@ add_action('before_delete_post', function ($post_id) use($generator) {
   foreach($generator->getPostDetailStructures() as $structure){
     if(in_array($post->post_type, $structure->post_types)){
       $structure->removeJson($post);
+    }
+  }
+
+  if($post->post_type === "page"){
+    foreach($generator->getPageDetailStructures() as $structure){
+      if(in_array($post->post_name, $structure->slugs)){
+        $structure->removeJson($post);
+      }
     }
   }
 });
