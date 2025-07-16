@@ -4,6 +4,7 @@ namespace StaticJsonGenerator;
 
 require_once __DIR__ . "/PostListStructure.php";
 require_once __DIR__ . "/PostDetailStructure.php";
+require_once __DIR__ . "/PageDetailStructure.php";
 require_once __DIR__ . "/TermListStructure.php";
 require_once __DIR__ . "/TermDetailStructure.php";
 require_once __DIR__ . "/DataStore.php";

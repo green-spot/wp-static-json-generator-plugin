@@ -7,7 +7,7 @@ function addAPI($route, $method, $callback){
     'methods' => $method,
     'callback' => $callback,
     'permission_callback' => function() {
-      return current_user_can('manage_options');
+      return true; // current_user_can('administrator');
     },
   ]);
 }
@@ -28,7 +28,7 @@ add_action('rest_api_init', function() {
       }
     }
 
-    foreach($generator->getPostDetailStructures() as $structure){
+    foreach($generator->getPageDetailStructures() as $structure){
       foreach($structure->slugs as $slug){
         $page = get_page_by_path($slug);
         if($page){
