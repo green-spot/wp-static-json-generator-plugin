@@ -7,7 +7,7 @@ function addAPI($route, $method, $callback){
     'methods' => $method,
     'callback' => $callback,
     'permission_callback' => function() {
-      return true; // current_user_can('administrator');
+      return current_user_can('manage_options');
     },
   ]);
 }
