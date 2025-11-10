@@ -21,10 +21,12 @@ class TermDetailStructure {
     $data = ($this->normalizer)($term);
     $file_name = $this->getFileName($term);
     DataStore::saveJson($file_name, $data);
+    DataStore::saveJson($file_name, $data, true);
   }
 
   public function removeJson($term){
     $file_name = $this->getFileName($term);
     DataStore::removeJson($file_name);
+    DataStore::removeJson($file_name, true);
   }
 }

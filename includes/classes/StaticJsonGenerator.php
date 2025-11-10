@@ -13,6 +13,7 @@ class StaticJsonGenerator {
   private static $instance;
   private array $structures;
   public string $data_directory;
+  public string $draft_data_directory;
 
   public function __construct(){
     $this->structures = [
@@ -34,12 +35,16 @@ class StaticJsonGenerator {
     $this->data_directory = $dir;
   }
 
+  public function setDraftDataDirectory($dir){
+    $this->draft_data_directory = $dir;
+  }
+
   private function addStructure($type, $structure){
     $this->structures[$type][] = $structure;
   }
 
-  public function getJsonPath($file_name){
-    return rtrim($this->data_directory, "/") . "/{$file_name}.json";
+  public function getJsonPath($file_name, $is_draft=false){
+    return rtrim($is_draft ? $this->draft_data_directory : $this->data_directory, "/") . "/{$file_name}.json";
   }
 
   public function addPostListStructure($post_types, $file_name, $normalizer){

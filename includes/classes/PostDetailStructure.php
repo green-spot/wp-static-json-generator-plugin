@@ -21,11 +21,16 @@ class PostDetailStructure {
     $data = ($this->normalizer)($post);
     $file_name = $this->getFileName($post);
 
-    DataStore::saveJson($file_name, $data);
+    DataStore::saveJson($file_name, $data, true);
+
+    if($post->status === "publish"){
+      DataStore::saveJson($file_name, $data);
+    }
   }
 
   public function removeJson($post){
     $file_name = $this->getFileName($post);
     DataStore::removeJson($file_name);
+    DataStore::removeJson($file_name, true);
   }
 }

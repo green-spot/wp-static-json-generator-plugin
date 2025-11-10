@@ -49,12 +49,21 @@ $generator = StaticJsonGenerator::instance();
         </tr>
         <?php endforeach; ?>
 
-        <tr>
-          <th>Type</th>
-          <th>Data Path</th>
-          <th>taxonomy</th>
-          <th></th>
+        <?php foreach($generator->getPageDetailStructures() as $i => $structure): ?>
+        <tr class="post-detail">
+          <?php if($i === 0): ?>
+          <td rowspan="<?php echo count($generator->getPageDetailStructures()); ?>">Page Detail</td>
+          <?php endif; ?>
+          <td><span><?php echo $structure->file_name; ?></span>.json</td>
+          <td>
+            <ul class="post-types">
+              <li>page</li>
+            </ul>
+          </td>
+          <td><a href="#">JSON Sample</a></td>
         </tr>
+        <?php endforeach; ?>
+
         <?php foreach($generator->getTermListStructures() as $i => [$taxonomy, $file_name, $_]): ?>
         <tr class="term-list">
           <?php if($i === 0): ?>

@@ -33,5 +33,9 @@ class TermListStructure {
     $terms = get_terms($this->getOptions());
     $data = ($this->normalizer)($terms);
     DataStore::saveJson($this->file_name, $data);
+
+    $terms = get_terms($this->getDraftOptions());
+    $data = ($this->normalizer)($terms);
+    DataStore::saveJson($this->file_name, $data, true);
   }
 }

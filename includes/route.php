@@ -25,6 +25,7 @@ add_action('admin_menu', function() {
     100
   );
 
+  /*
   add_submenu_page(
     "static-json-generator",
     __( 'Settings', 'static-json-generator' ),
@@ -35,4 +36,5 @@ add_action('admin_menu', function() {
       settingPage();
     }
   );
+  */
 });

@@ -35,5 +35,9 @@ class PostListStructure {
     $posts = get_posts($this->getOptions());
     $data = ($this->normalizer)($posts);
     DataStore::saveJson($this->file_name, $data);
+
+    $posts = get_posts($this->getDraftOptions());
+    $data = ($this->normalizer)($posts);
+    DataStore::saveJson($this->file_name, $data, true);
   }
 }
