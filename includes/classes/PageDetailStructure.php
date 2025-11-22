@@ -23,7 +23,7 @@ class PageDetailStructure {
 
     DataStore::saveJson($file_name, $data, true);
 
-    if($post->status === "publish"){
+    if($post->post_status === "publish"){
       DataStore::saveJson($file_name, $data);
     }
   }
